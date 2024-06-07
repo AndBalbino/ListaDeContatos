@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+import styles from './App.module.css'
+import Taskform from './components/Taskform';
+import Tasklist from './components/Tasklist';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div>
+   <Header/>
+   <main className={styles.main}>
+   <div>
+    <h2>Oque você vai fazer?</h2>
+    <Taskform btnText='Criar contato'/>
+   </div>
+   <div>
+    <h2>Seus contatos:</h2>
+    <Tasklist/>
+   </div>
+   </main>
+  <Footer/>
+   </div>
   );
 }
 
