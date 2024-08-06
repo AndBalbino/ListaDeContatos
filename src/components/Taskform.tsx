@@ -4,29 +4,43 @@ import styles from './TaskForm.module.css';
 import {ITask} from '../interfaces/Task'
 
 interface Props {
-  btnText: string,
-  taskList: ITask[],
-  setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>
+  btnText: string;
+  taskList: ITask[];
+  setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>;
+  task?: ITask | null;
+  handleUpdate?(id: number, title: string, phoneNumber: number): void;
 }
 
-const Taskform = ({btnText, taskList, setTaskList}: Props) => {
+const Taskform = ({btnText, taskList, setTaskList, task, handleUpdate}: Props) => {
 
   const [id, setId] = useState<number>(0)
   const [title, setTitle] = useState<string>("")
   const [phoneNumber, setPhoneNumber] = useState<number>(0)
 
+    useEffect (() => {
+
+      if(task){
+        setId(task.id);
+        setTitle(task.title);
+        setPhoneNumber(task.phoneNumber);
+      }
+    }, [task])
 
   const addTaskHundler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const id = Math.floor(Math.random() * 1000)
+      if(handleUpdate){
+          handleUpdate(id, title, phoneNumber)
+      }else{
+        const id = Math.floor(Math.random() * 1000)
 
-    const newTask: ITask = {id, title, phoneNumber}
-
-    setTaskList!([...taskList, newTask])
-    setTitle('')
-    setPhoneNumber(0)
-
+        const newTask: ITask = {id, title, phoneNumber}
+    
+        setTaskList!([...taskList, newTask])
+        setTitle('')
+        setPhoneNumber(0)
+      }
+    
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

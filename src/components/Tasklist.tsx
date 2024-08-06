@@ -6,18 +6,27 @@ import styles from './TaskList.module.css'
 
 
 interface Props  {
-  taskList: ITask[]
+  taskList: ITask[];
+  handleDelete(id: number): void;
+  handleEdit(task: ITask):void;
 }
 
-const Tasklist = ({taskList}: Props) => {
+const Tasklist = ({taskList, handleDelete, handleEdit}: Props) => {
   return (
     <>
       {taskList.length > 0 ? (
        taskList.map((task) => (
-        <div key={task.id} >
-        <p>
+        <div key={task.id} className={styles.task} >
+       <div className={styles.details}>
+        <h4>
           {task.title}
-        </p>
+        </h4>
+        <p>Número de telefone: {task.phoneNumber}</p>
+       </div>
+       <div className={styles.actions}>
+        <i className='bi bi-pencil' onClick={()=> handleEdit(task)}></i>
+        <i className='bi bi-trash' onClick={() => {handleDelete(task.id)}}></i>
+       </div>
         </div>
        ))
       ):(<p>Não há contatos cadastrados</p>)}
