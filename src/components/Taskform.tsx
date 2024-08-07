@@ -8,13 +8,14 @@ interface Props {
   taskList: ITask[];
   setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>;
   task?: ITask | null;
-  handleUpdate?(id: number, title: string, phoneNumber: number): void;
+  handleUpdate?(id: number, title: string, email: string, phoneNumber: number): void;
 }
 
 const Taskform = ({btnText, taskList, setTaskList, task, handleUpdate}: Props) => {
 
   const [id, setId] = useState<number>(0)
   const [title, setTitle] = useState<string>("")
+  const [email, setEmail] = useState<string>("")
   const [phoneNumber, setPhoneNumber] = useState<number>(0)
 
     useEffect (() => {
@@ -22,6 +23,7 @@ const Taskform = ({btnText, taskList, setTaskList, task, handleUpdate}: Props) =
       if(task){
         setId(task.id);
         setTitle(task.title);
+        setEmail(task.email);
         setPhoneNumber(task.phoneNumber);
       }
     }, [task])
@@ -30,14 +32,15 @@ const Taskform = ({btnText, taskList, setTaskList, task, handleUpdate}: Props) =
     e.preventDefault();
 
       if(handleUpdate){
-          handleUpdate(id, title, phoneNumber)
+          handleUpdate(id, title, email, phoneNumber)
       }else{
         const id = Math.floor(Math.random() * 1000)
 
-        const newTask: ITask = {id, title, phoneNumber}
+        const newTask: ITask = {id, title, email, phoneNumber}
     
         setTaskList!([...taskList, newTask])
         setTitle('')
+        setEmail('')
         setPhoneNumber(0)
       }
     
@@ -45,8 +48,11 @@ const Taskform = ({btnText, taskList, setTaskList, task, handleUpdate}: Props) =
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if(e.target.name === 'title'){
-      setTitle(e.target.value)
-    }else {
+      setTitle(e.target.value) 
+    }else if(e.target.name === 'email'){
+      setEmail(e.target.value)
+    }
+    else {
       setPhoneNumber(parseInt(e.target.value))
     }
   }
@@ -58,6 +64,12 @@ const Taskform = ({btnText, taskList, setTaskList, task, handleUpdate}: Props) =
         Nome: 
         </label>
         <input type="text" name='title' placeholder='Nome do contato' onChange={handleChange} value={title} />
+      </div>
+      <div className={styles.input_container}>
+        <label htmlFor='email'>
+        E-mail: 
+        </label>
+        <input type="email" name='email' placeholder='E-mail do contato' onChange={handleChange} value={email} />
       </div>
       <div className={styles.input_container}>
         <label htmlFor='numero'>

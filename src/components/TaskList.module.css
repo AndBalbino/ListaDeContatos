@@ -17,6 +17,18 @@
 
 }
 
+.details p span {
+    font-weight: bold;
+}
+
+.details p {
+    margin-bottom: 1em;
+    
+
+}
+
+
+
 .actions{
     display: flex;
     flex-direction: column;

@@ -21,7 +21,8 @@ const Tasklist = ({taskList, handleDelete, handleEdit}: Props) => {
         <h4>
           {task.title}
         </h4>
-        <p>Número de telefone: {task.phoneNumber}</p>
+        <p><span>Email:</span> {task.email}</p>
+        <p><span>Número de telefone:</span> {task.phoneNumber}</p>
        </div>
        <div className={styles.actions}>
         <i className='bi bi-pencil' onClick={()=> handleEdit(task)}></i>
