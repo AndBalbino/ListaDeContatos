@@ -1,6 +1,5 @@
 import React from 'react'
-
-import styles from './Modal.module.css'
+import { Fade, ModalCard } from './styled';
 
 
 interface Props  {
@@ -16,11 +15,10 @@ const Modal = ({children}: Props) => {
 
   return (
     <div id='modal' className='hide'>
-        <div className={styles.fade} onClick={closeModal}></div>
-        <div className={styles.modal}>
-            <h2>Texto modal</h2>
+        <Fade onClick={closeModal}></Fade>
+        <ModalCard>
             {children}
-        </div>
+        </ModalCard>
     </div>
   )
 }

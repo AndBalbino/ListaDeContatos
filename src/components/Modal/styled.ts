@@ -1,13 +1,14 @@
-.fade {
+import styled from "styled-components"
+
+export const Fade =  styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
     background-color: #000;
     opacity: 0.3;
-}
-
-.modal {
-    position: absolute;
+`
+export const ModalCard = styled.div`
+  position: absolute;
     top: 10%;
     left: 0;
     right: 0;
@@ -20,13 +21,6 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+`
 
-}
 
-.modal h2{
-    margin-bottom: 1em;
-}
-
-.modal form{
-    width: 90%;
-}

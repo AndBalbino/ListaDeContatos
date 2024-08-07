@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from './Header.module.css';
+import { HeaderCard } from './styled';
 
 const Header = () => {
   return (
-    <header className={styles.header}>
+    <HeaderCard>
     <h1>Lista de contatos</h1>
-  </header>
+  </HeaderCard>
   )
 }
 

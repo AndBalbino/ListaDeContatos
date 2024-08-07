@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Taskform from './components/Taskform';
 import Tasklist from './components/Tasklist';
-import Modal from './components/Modal';
+import Modal from './components/Modal/Modal';
 
 import {ITask} from './interfaces/Task'
 import { Main } from '.';
